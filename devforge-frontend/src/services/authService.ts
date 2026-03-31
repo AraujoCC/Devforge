@@ -1,0 +1,19 @@
+import api from './api'
+import type { AuthResponse, LoginRequest, RegisterRequest } from '../types'
+
+export const authService = {
+  login: async (data: LoginRequest): Promise<AuthResponse> => {
+    const response = await api.post<AuthResponse>('/api/auth/login', data)
+    return response.data
+  },
+
+  register: async (data: RegisterRequest): Promise<AuthResponse> => {
+    const response = await api.post<AuthResponse>('/api/auth/register', data)
+    return response.data
+  },
+
+  getMe: async (): Promise<any> => {
+    const response = await api.get('/api/users/me')
+    return response.data
+  },
+}
